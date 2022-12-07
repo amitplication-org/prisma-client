@@ -11,9 +11,9 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { Module, forwardRef } from "@nestjs/common";
 import { MorganModule } from "nest-morgan";
-import { PrismaModule } from "nestjs-prisma";
 import { ACLModule } from "../../auth/acl.module";
 import { AuthModule } from "../../auth/auth.module";
+import { PrismaModule } from "../../prisma/prisma.module";
 
 @Module({
   imports: [
