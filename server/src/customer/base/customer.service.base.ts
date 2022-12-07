@@ -9,7 +9,7 @@ https://docs.amplication.com/how-to/custom-code
 
 ------------------------------------------------------------------------------
   */
-import { Prisma, Customer, Order, Address } from "@prisma/client";
+import { Prisma, Customer, Order, Address } from "../../generated-prisma-client";
 import { PrismaService } from "../../prisma/prisma.service";
 import { CustomerFindUniqueArgs } from "./CustomerFindUniqueArgs";
 
