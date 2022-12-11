@@ -9,8 +9,9 @@ https://docs.amplication.com/how-to/custom-code
 
 ------------------------------------------------------------------------------
   */
-import { PrismaService } from "nestjs-prisma";
-import { Prisma, Address, Customer } from "@prisma/client";
+import { Prisma, Address, Customer } from "../../generated-prisma-client";
+import { PrismaService } from "../../prisma/prisma.service";
+import { AddressFindUniqueArgs } from "./AddressFindUniqueArgs";
 
 export class AddressServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -29,7 +30,7 @@ export class AddressServiceBase {
   async findOne<T extends Prisma.AddressFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.AddressFindUniqueArgs>
   ): Promise<Address | null> {
-    return this.prisma.address.findUnique(args);
+    return this.prisma.address.findUnique(args as AddressFindUniqueArgs);
   }
   async create<T extends Prisma.AddressCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.AddressCreateArgs>
@@ -50,7 +51,7 @@ export class AddressServiceBase {
   async findCustomers(
     parentId: string,
     args: Prisma.CustomerFindManyArgs
-  ): Promise<Customer[]> {
+  ): Promise<Customer[] | null> {
     return this.prisma.address
       .findUnique({
         where: { id: parentId },

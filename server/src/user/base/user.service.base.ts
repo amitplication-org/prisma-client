@@ -9,10 +9,12 @@ https://docs.amplication.com/how-to/custom-code
 
 ------------------------------------------------------------------------------
   */
-import { PrismaService } from "nestjs-prisma";
-import { Prisma, User } from "@prisma/client";
+import { Prisma, User } from "../../generated-prisma-client";
 import { PasswordService } from "../../auth/password.service";
 import { transformStringFieldUpdateInput } from "../../prisma.util";
+import { PrismaService } from "../../prisma/prisma.service";
+import { UserCreateInput } from "./UserCreateInput";
+import { UserFindUniqueArgs } from "./UserFindUniqueArgs";
 
 export class UserServiceBase {
   constructor(
@@ -34,7 +36,7 @@ export class UserServiceBase {
   async findOne<T extends Prisma.UserFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.UserFindUniqueArgs>
   ): Promise<User | null> {
-    return this.prisma.user.findUnique(args);
+    return this.prisma.user.findUnique(args as UserFindUniqueArgs);
   }
   async create<T extends Prisma.UserCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.UserCreateArgs>

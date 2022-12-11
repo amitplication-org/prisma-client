@@ -14,6 +14,7 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { ServeStaticModule } from "@nestjs/serve-static";
 import { ServeStaticOptionsService } from "./serveStaticOptions.service";
 import { GraphQLModule } from "@nestjs/graphql";
+import { PrismaModule } from "./prisma/prisma.module";
 
 @Module({
   controllers: [],
@@ -32,6 +33,7 @@ import { GraphQLModule } from "@nestjs/graphql";
     ServeStaticModule.forRootAsync({
       useClass: ServeStaticOptionsService,
     }),
+    PrismaModule,
     GraphQLModule.forRootAsync({
       useFactory: (configService) => {
         const playground = configService.get("GRAPHQL_PLAYGROUND");
