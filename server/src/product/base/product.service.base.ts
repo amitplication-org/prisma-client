@@ -13,7 +13,7 @@ import {
   Prisma,
   Product,
   Order,
-} from "../../../prisma/generated-prisma-client";
+} from "generated-prisma-client";
 import { PrismaService } from "../../prisma/prisma.service";
 
 export class ProductServiceBase {

@@ -9,7 +9,7 @@ https://docs.amplication.com/how-to/custom-code
 
 ------------------------------------------------------------------------------
   */
-import { Prisma, Customer, Order, Address } from "../../../prisma/generated-prisma-client";
+import { Prisma, Customer, Order, Address } from "generated-prisma-client";
 import { PrismaService } from "../../prisma/prisma.service";
 import { CustomerFindUniqueArgs } from "./CustomerFindUniqueArgs";
 
@@ -25,6 +25,8 @@ export class CustomerServiceBase {
   async findMany<T extends Prisma.CustomerFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.CustomerFindManyArgs>
   ): Promise<Customer[]> {
+    console.log(this.prisma.randomValue);
+    
     return this.prisma.customer.findMany(args);
   }
   async findOne<T extends Prisma.CustomerFindUniqueArgs>(
